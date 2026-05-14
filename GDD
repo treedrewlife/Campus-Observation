@@ -1,0 +1,52 @@
+Documento de Estrutura: Projeto "Campus Observation"
+1. Conceito do Jogo
+Um jogo de terror psicológico e observação onde o jogador assume o papel de um segurança monitorando câmeras em um campus universitário. O objetivo é sobreviver até o final do turno (ex: 6:00 AM) identificando e corrigindo anomalias sutis antes que elas se acumulem e causem uma falha catastrófica (Game Over).
+
+2. Estrutura de Páginas (6 Páginas)
+Menu Principal (index.html): Início do jogo e reset do localStorage.
+
+Instruções (instrucoes.html): Explicação das mecânicas.
+
+Câmera 1 - Reitoria (cam1.html)
+
+Câmera 2 - Laboratório (cam2.html)
+
+Câmera 3 - Corredor Central (cam3.html)
+
+Câmera 4 - Estacionamento (cam4.html)
+(Extra: Páginas de Vitória e Game Over)
+
+3. Lógica de Funcionamento (Backend "Front-end")
+A. Persistência com localStorage
+Como o jogo usa páginas HTML separadas, o estado será mantido em um objeto JSON salvo no navegador:
+
+tempoInicio: Registro de quando a partida começou.
+
+estadoCameras: Array de objetos indicando se cada câmera está "normal" ou com "anomaliaX".
+
+anomaliasAtivas: Contador para determinar o Game Over (ex: se chegar a 4, o jogador perde).
+
+B. Ciclo de Gameplay
+Entrada na Página: O script lê o localStorage. Se a câmera atual tiver uma anomalia marcada, o DOM é manipulado para trocar a imagem padrao.jpg pela anomalia.jpg.
+
+Sorteio de Anomalias: Ao trocar de câmera, o sistema roda um cálculo de probabilidade. A chance aumenta conforme o tempo decorrido (calculado pela diferença entre o horário atual e o tempoInicio).
+
+Mecânica de Correção: O jogador deve clicar nas coordenadas específicas da anomalia na imagem. O clique dispara um evento que limpa o status daquela câmera no localStorage e atualiza o contador.
+
+4. Produção de Imagens e Anomalias
+Técnica: Uso de IA (Inpainting/Generative Fill) sobre fotos reais ou geradas para garantir que o cenário permaneça idêntico, mudando apenas o objeto anômalo.
+
+Tipos de Anomalias Sugeridas:
+
+Objeto: Cadeira movida ou desaparecida.
+
+Iluminação: Luz piscando ou sombra estranha.
+
+Intruso: Silhueta no fundo do cenário (aumenta o terror).
+
+5. Dificuldades Antecipadas e Soluções (O "Pulo do Gato")
+Flash de Carregamento: Para evitar que o jogador perceba a troca de imagem pelo "delay" do navegador, usaremos um pre-load de imagens via CSS invisível em todas as páginas.
+
+Trapaça com Botão Voltar: O jogo verificará o estado do localStorage em cada window.onload. Se o jogador tentar voltar para uma página onde ele já "perdeu", o script o redirecionará imediatamente para o Game Over.
+
+Coordenadas de Clique: Usaremos áreas de clique (divs transparentes com position: absolute) que só aparecem se a anomalia estiver ativa, mantendo o cursor como default para não dar pistas.
