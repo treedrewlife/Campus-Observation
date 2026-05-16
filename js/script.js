@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
        
         document.body.style.opacity = '0';
         setTimeout(() => {
-            window.location.href = './Pages/camera1.html'; 
+            window.location.href = './pages/camera1.html'; 
         }, 500);
     });
 
@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     btnCreditos.addEventListener('click', () => {
-        window.location.href = './Pages/creditos.html';
+        window.location.href = './pages/creditos.html';
     });
 
     
