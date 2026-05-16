@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Efeito visual antes de sair
         document.body.style.opacity = '0';
         setTimeout(() => {
-            window.location.href = 'cam1.html'; // Ajuste o caminho conforme sua pasta
+            window.location.href = './Pages/camera1.html'; // Ajuste o caminho conforme sua pasta
         }, 500);
     });
 
@@ -48,13 +48,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     btnCreditos.addEventListener('click', () => {
-        window.location.href = 'paginas/creditos.html';
+        window.location.href = './Pages/creditos.html';
     });
 
     // 5. Easter Egg ou Interatividade extra (Vibe Hacker)
     document.addEventListener('keydown', (e) => {
         if (e.key === 'w') {
-            console.log("ACESSO AO LOG DO SISTEMA: Erro na Câmera 04...");
+            console.log("temos que tirar 8 pelo menos");
         }
     });
 });
