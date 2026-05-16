@@ -1,19 +1,47 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="Viewport" content="width=device-width, initial-scale=1.0">
-  <title>Camera 1</title>
-  <link rel="Stylesheet" href="../css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAM_01 - Lab105</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="cameras.css">
 </head>
-<body>
-  <main>
-    <h1> Câmera 1 </h1>
-    
-    <img src="../assets/img/camera1.jpg" alt="Câmera1">
-    
-    <button id="reportar"> Reportar Anomalia </button>
-  </main>
-  <sript src="../js/camera1.js"></sript>
+<body class="camera-view">
+    <div class="overlay-video"></div>
+
+    <main class="monitor-container">
+        <header class="cam-header">
+            <div class="status-bar">
+                <span>FEED_ESTÁVEL</span>
+                <span class="blink">●</span>
+            </div>
+            <div id="relogio-digital">00:00 AM</div>
+        </header>
+
+        <div class="camera-display" id="camera-container">
+            <div class="cam-info">CAM 01 - LAB105</div>
+
+            <div><button id="btn-reportar"> DETECTAR ANOMALIA </button></div>
+
+            <img src="./imgs/camera1.jpg" id="feed-camera" alt="Monitoramento">
+
+            <div id="anomalia-cadeira" class="hitbox" title="Investigar"></div>
+            <div id="anomalia-quadro" class="hitbox" title="Investigar"></div>
+        </div>
+
+         
+
+        <nav class="controles-camera">
+            <button class="btn-nav active">01</button>
+            <button onclick="location.href='cam2.html'" class="btn-nav">02</button>
+            <button onclick="location.href='cam3.html'" class="btn-nav">03</button>
+            <button onclick="location.href='cam4.html'" class="btn-nav">04</button>
+        </nav>
+    </main>
+
+    <script src="./gameLogic.js"></script>
 </body>
 </html>
