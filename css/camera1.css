@@ -1,1 +1,127 @@
+.camera-display {
+    position: relative; 
+    overflow: hidden;
+}
 
+
+:root {
+    --neon-green: #00ff41;
+    --dark-bg: #0a0a0a;
+    --terminal-font: 'JetBrains Mono', monospace;
+}
+
+body.camera-view {
+    background-color: var(--dark-bg);
+    color: var(--neon-green);
+    font-family: var(--terminal-font);
+    margin: 0;
+    overflow: hidden; 
+}
+
+
+.monitor-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+    border: 2px solid var(--neon-green);
+    position: relative;
+
+}
+
+.overlay-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
+                linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+    background-size: 100% 2px, 3px 100%;
+    pointer-events: none; 
+    z-index: 10;
+}
+
+
+.camera-display {
+    position: relative;
+    flex-grow: 1;
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid var(--neon-green);
+    box-shadow: inset 0 0 20px #00ff4133;
+}
+
+#feed-camera {
+    max-width: 100%;
+    max-height: 100%;
+    filter: grayscale(0.3) contrast(1.2) brightness(0.8);
+    transition: filter 0.3s ease;
+}
+
+
+.cam-info {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 5px 10px;
+    font-size: 0.9rem;
+    z-index: 11;
+}
+
+
+.controles-camera {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+    padding-bottom: 10px;
+}
+
+.btn-nav {
+    background: transparent;
+    color: var(--neon-green);
+    border: 1px solid var(--neon-green);
+    padding: 10px 20px;
+    font-family: var(--terminal-font);
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-nav:hover, .btn-nav.active {
+    background: var(--neon-green);
+    color: var(--dark-bg);
+    box-shadow: 0 0 15px var(--neon-green);
+}
+
+
+#btn-reportar {
+    position: absolute;
+    z-index: 11;
+    top: 465px;
+    left: 750px;
+    background: #0a0a0a;
+    color: #747474;
+    padding: 15px 10px;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+#btn-reportar:hover {
+    background: #ff4444;
+    color: white;
+}
+
+.cam-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 10px 20px;
+}
