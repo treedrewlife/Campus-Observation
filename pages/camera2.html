@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAM_02 - Laboratório</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/camera1.css">
+</head>
+
+<body class="camera-view">
+    <div class="overlay-video"></div>
+
+    <main class="monitor-container">
+        <header class="cam-header">
+            <div class="status-bar">
+                <span>FEED_ESTÁVEL</span>
+                <span class="blink">●</span>
+            </div>
+            <div id="relogio-digital">00:00 AM</div>
+        </header>
+
+        <div class="camera-display" id="camera-container">
+            <div class="cam-info">CAM 02 - CORREDOR</div>
+
+            <div><button id="btn-reportar"> DETECTAR ANOMALIA </button></div>
+
+            <img src="../assets/images/cameras/camera2.webp" id="feed-camera" alt="Monitoramento">
+        </div>
+
+        <nav class="controles-camera">
+            <button onclick="location.href='../pages/camera1.html'" class="btn-nav">01</button>
+            <button class="btn-nav active">02</button>
+            <button onclick="location.href='../pages/camera3.html'" class="btn-nav">03</button>
+            <button onclick="location.href='../pages/camera4.html'" class="btn-nav">04</button>
+        </nav>
+    </main>
+
+    <script src="./gameLogic.js"></script>
+</body>
+
+</html>
