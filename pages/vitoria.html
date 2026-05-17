@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SISTEMA SEGURO</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .success-text {
+            color: #00ff41;
+            text-shadow: 0 0 10px #00ff41;
+            margin: 20px 0;
+            font-size: 1.2rem;
+        }
+        .btn-voltar {
+            text-decoration: none;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay"></div>
+    
+    <main class="terminal-container" style="border-color: #00ff41; box-shadow: 0 0 20px rgba(0, 255, 65, 0.2), inset 0 0 10px rgba(0, 255, 65, 0.1);">
+        <header class="terminal-header">
+            <div class="status-bar" style="color: #00ff41;">
+                <span>SYSTEM_STATUS: SECURE</span>
+                <span class="blink">●</span>
+            </div>
+            <h1 class="glitch" data-text="TURNO_CONCLUIDO" style="color: #00ff41;">TURNO_CONCLUIDO</h1>
+            <p class="success-text">> 06:00 AM atingido com sucesso.</p>
+            <p class="success-text">> O campus está seguro. Você sobreviveu à noite.</p>
+        </header>
+        
+        <nav class="menu-options">
+            <a href="../index.html" class="btn-voltar">
+                <button type="button"><span class="prompt">[</span> 01. RETORNAR_MENU_PRINCIPAL <span class="prompt">]</span></button>
+            </a>
+        </nav>
+
+        <footer class="terminal-footer" style="color: #00ff41;">
+            <p>V0.8.2-BETA | CONNECTION: SECURE</p>
+        </footer>
+    </main>
+</body>
+</html>
