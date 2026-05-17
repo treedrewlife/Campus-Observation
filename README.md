@@ -1,13 +1,11 @@
 # Campus Observation 📹👁️
 
-**Trabalho Prático em Grupo — Projeto Web com HTML, CSS e JavaScript**
+Projeto Disciplinar do Curso de **Programação de Sítios para Internet**, utilizando HTML, CSS, Java Script e Manipulação do DOM.
 
 ## 📖 Sobre o Projeto
 O **Campus Observation** é um jogo de terror psicológico e observação desenvolvido para a disciplina de Programação de Sítios para Internet. Nele, o jogador assume o papel de um segurança monitorando câmeras de um campus universitário. O objetivo é sobreviver até o final do turno (06:00 AM) identificando e corrigindo anomalias sutis nas imagens antes que elas se acumulem e causem uma falha catastrófica.
 
 Este projeto foca fortemente na manipulação do **DOM** (inserção, alteração, leitura e remoção), eventos dinâmicos e uso de **localStorage** para manutenção de estado, sem utilizar variáveis globais e com forte adesão ao padrão ECMAScript moderno.
-
-> ⚠️ **Atenção (Regra 12):** O código-fonte deste projeto **não contém comentários** explicativos, cumprindo rigorosamente os requisitos da disciplina.
 
 ---
 
