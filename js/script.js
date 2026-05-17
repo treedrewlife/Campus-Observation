@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   
     const btnIniciar = document.getElementById('iniciar');
+    const btnInstrucoes = document.getElementById('instrucoes');
     const btnConfig = document.getElementById('configuracoes');
     const btnCreditos = document.getElementById('creditos');
 
@@ -42,8 +43,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 500);
     });
 
+
+    btnInstrucoes.addEventListener('click', () => {
+        window.location.href = './pages/instrucoes.html';
+    });
+
     btnConfig.addEventListener('click', () => {
-        alert("Configurações: Ajuste de volume e sensibilidade (Em breve)");
+        window.location.href = './pages/configuracoes.html';
     });
 
     btnCreditos.addEventListener('click', () => {

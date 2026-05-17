@@ -4,11 +4,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Campus - Observation</title>
+    <title>Configurações - Campus Observation</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .config-content {
+            margin: 30px 0;
+            line-height: 1.6;
+        }
+
+        .btn-voltar {
+            text-decoration: none;
+            display: inline-block;
+        }
+    </style>
 </head>
 
 <body>
@@ -20,26 +31,23 @@
                 <span>SYSTEM_STATUS: ONLINE</span>
                 <span class="blink">●</span>
             </div>
-            <h1 class="glitch" data-text="CAMPUS_OBSERVATION">CAMPUS_OBSERVATION</h1>
-            <p class="typing-text">> Monitoramento CPD Fatec... Identificando anomalias.</p>
+            <h1 class="glitch" data-text="CONFIGURACOES">CONFIGURACOES</h1>
         </header>
 
+        <div class="config-content">
+        </div>
+
         <nav class="menu-options">
-            <button id="iniciar"><span class="prompt">[</span> 01. INICIAR_SESSAO <span class="prompt">]</span></button>
-            <button id="instrucoes"><span class="prompt">[</span> 02. ACESSAR_INSTRUCOES <span
-                    class="prompt">]</span></button>
-            <button id="configuracoes"><span class="prompt">[</span> 03. CONFIGURACOES <span
-                    class="prompt">]</span></button>
-            <button id="creditos"><span class="prompt">[</span> 04. ACESSAR_CREDITOS <span
-                    class="prompt">]</span></button>
+            <a href="../index.html" class="btn-voltar">
+                <button type="button"><span class="prompt">[</span> 01. RETORNAR_MENU_PRINCIPAL <span
+                        class="prompt">]</span></button>
+            </a>
         </nav>
 
         <footer class="terminal-footer">
             <p>V0.8.2-BETA | CONNECTION: ENCRYPTED</p>
         </footer>
     </main>
-
-    <script src="./js/script.js"></script>
 </body>
 
 </html>
