@@ -29,13 +29,15 @@ document.addEventListener('DOMContentLoaded', () => {
     else if (currentPage === 'camera2.html') currentCamId = 'cam2';
     else if (currentPage === 'camera3.html') currentCamId = 'cam3';
     else if (currentPage === 'camera4.html') currentCamId = 'cam4';
+    else if (currentPage === 'camera5.html') currentCamId = 'cam5';
+    else if (currentPage === 'camera6.html') currentCamId = 'cam6';
 
     const getCamerasState = () => {
         const state = localStorage.getItem('camerasState');
         if (state) {
             return JSON.parse(state);
         }
-        return { cam1: false, cam2: false, cam3: false, cam4: false };
+        return { cam1: false, cam2: false, cam3: false, cam4: false, cam5: false, cam6: false };
     };
 
     const saveCamerasState = (state) => {
@@ -44,11 +46,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const checkGameOver = (state) => {
         const activeCount = Object.values(state).filter(isAnomalous => isAnomalous).length;
-        if (activeCount >= 4) {
+        if (activeCount >= 2) {
             localStorage.setItem('gameState', 'gameover');
             window.location.href = '../pages/gameover.html';
         }
     };
+
+    checkGameOver(getCamerasState());
 
     const fixAnomaly = (event) => {
         const hitbox = event.target;
