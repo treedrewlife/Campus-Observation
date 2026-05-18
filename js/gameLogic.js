@@ -2,18 +2,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const gameState = localStorage.getItem('gameState');
     
     if (gameState === 'gameover') {
-        window.location.href = '../pages/gameover.html';
+        window.top.location.href = '../pages/gameover.html';
         return;
     }
 
     if (gameState === 'victory') {
-        window.location.href = '../pages/vitoria.html';
+        window.top.location.href = '../pages/vitoria.html';
         return;
     }
 
     const startTime = parseInt(localStorage.getItem('startTime'), 10);
     if (!startTime) {
-        window.location.href = '../index.html';
+        window.top.location.href = '../index.html';
         return;
     }
 
@@ -33,6 +33,9 @@ document.addEventListener('DOMContentLoaded', () => {
     else if (currentPage === 'camera4.html') currentCamId = 'cam4';
     else if (currentPage === 'camera5.html') currentCamId = 'cam5';
     else if (currentPage === 'camera6.html') currentCamId = 'cam6';
+    else if (currentPage === 'hub.html') {
+        currentCamId = localStorage.getItem('currentView');
+    }
 
     const camCoordinates = {
         cam1: { top: '10%', left: '10%' },
@@ -48,7 +51,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (state) {
             return JSON.parse(state);
         }
-        // false = limpo. Se tiver anomalia, o valor será um timestamp (número). Se consertando, "repairing_timestamp"
         return { cam1: false, cam2: false, cam3: false, cam4: false, cam5: false, cam6: false };
     };
 
@@ -59,21 +61,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const checkGameOver = (activeCount) => {
         if (activeCount >= 4) {
             localStorage.setItem('gameState', 'gameover');
-            window.location.href = '../pages/gameover.html';
+            window.top.location.href = '../pages/gameover.html';
         }
     };
 
     const updateUI = () => {
+        if (localStorage.getItem('isPaused') === 'true') return;
+
         let currentState = getCamerasState();
         let stateChanged = false;
         
-        // Verifica todos os estados de conserto em andamento (Opção C)
         Object.keys(currentState).forEach(camId => {
             const val = currentState[camId];
             if (typeof val === 'string' && val.startsWith('repairing_')) {
                 const repairStart = parseInt(val.split('_')[1], 10);
                 const elapsedRepair = new Date().getTime() - repairStart;
-                if (elapsedRepair >= 5000) { // 5 segundos para consertar
+                if (elapsedRepair >= 5000) { 
                     currentState[camId] = false;
                     stateChanged = true;
                 }
@@ -109,7 +112,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 minimapContainer.removeChild(minimapContainer.firstChild);
             }
             
-            // Indicador de qual câmera o jogador está acessando (Ponto Verde)
             if (currentCamId && camCoordinates[currentCamId]) {
                 const playerDot = document.createElement('div');
                 playerDot.classList.add('minimap-player');
@@ -119,7 +121,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 minimapContainer.appendChild(playerDot);
             }
             
-            // Indicador de Anomalias (Ponto Vermelho ou Amarelo)
             Object.keys(currentState).forEach(camId => {
                 if (currentState[camId] !== false) {
                     const alertDot = document.createElement('div');
@@ -143,8 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (currentCamId && currentVal !== false && feedImage) {
             
             if (typeof currentVal === 'string' && currentVal.startsWith('repairing_')) {
-                // Modo Conserto (Opção C aguardando tempo)
-                feedImage.style.filter = 'brightness(0) sepia(1) hue-rotate(180deg)'; // Tela zoada de conserto
+                feedImage.style.filter = 'brightness(0) sepia(1) hue-rotate(180deg)'; 
                 if (btnConsertar) {
                     btnConsertar.textContent = 'CONSERTANDO...';
                     btnConsertar.disabled = true;
@@ -154,14 +154,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (oldPlaceholder && cameraContainer) cameraContainer.removeChild(oldPlaceholder);
                 
             } else {
-                // Anomalia Ativa
                 feedImage.style.filter = 'hue-rotate(90deg) saturate(200%)';
                 
                 const anomalyStart = currentVal;
                 const elapsed = new Date().getTime() - anomalyStart;
                 
                 if (elapsed < 10000) {
-                    // Anomalia recente (Hitbox ativa, Botão desativado)
                     if (btnConsertar) {
                         btnConsertar.textContent = 'SISTEMA BLOQUEADO';
                         btnConsertar.disabled = true;
@@ -180,10 +178,10 @@ document.addEventListener('DOMContentLoaded', () => {
                         placeholder.style.left = '45%';
                         placeholder.style.zIndex = '12';
                         placeholder.style.cursor = 'crosshair';
-                        placeholder.style.pointerEvents = 'auto'; // Clicavel!
+                        placeholder.style.pointerEvents = 'auto'; 
                         
-                        // Hitbox click - Conserto Instantâneo
                         placeholder.onclick = () => {
+                            if (localStorage.getItem('isPaused') === 'true') return;
                             let state = getCamerasState();
                             state[currentCamId] = false;
                             saveCamerasState(state);
@@ -193,7 +191,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         cameraContainer.appendChild(placeholder);
                     }
                 } else {
-                    // Passou 10 segundos, anomalia corrompeu a câmera! (Hitbox some, Botão ativa)
                     if (btnConsertar) {
                         btnConsertar.textContent = 'CONSERTAR CÂMERA';
                         btnConsertar.disabled = false;
@@ -208,7 +205,7 @@ document.addEventListener('DOMContentLoaded', () => {
             feedImage.style.filter = 'grayscale(0.3) contrast(1.2) brightness(0.8)';
             if (btnConsertar) {
                 btnConsertar.textContent = 'CONSERTAR CÂMERA';
-                btnConsertar.disabled = true; // Não tem o que consertar
+                btnConsertar.disabled = true; 
                 btnConsertar.style.opacity = '0.5';
             }
             if (cameraContainer) {
@@ -222,14 +219,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (btnConsertar) {
         btnConsertar.addEventListener('click', () => {
+            if (localStorage.getItem('isPaused') === 'true') return;
             const currentState = getCamerasState();
             const currentVal = currentState[currentCamId];
             
-            // Só pode usar o botão se a anomalia for antiga (>10s)
             if (currentCamId && currentVal !== false && typeof currentVal === 'number') {
                 const elapsed = new Date().getTime() - currentVal;
                 if (elapsed >= 10000) {
-                    // Inicia o processo de conserto (Opção C)
                     currentState[currentCamId] = 'repairing_' + new Date().getTime();
                     saveCamerasState(currentState);
                     updateUI();
@@ -239,6 +235,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const raffleAnomaly = () => {
+        if (localStorage.getItem('isPaused') === 'true') return;
         const currentState = getCamerasState();
         const availableCams = Object.keys(currentState).filter(cam => currentState[cam] === false);
         
@@ -246,7 +243,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const chance = Math.random();
             if (chance > 0.6) { 
                 const randomCam = availableCams[Math.floor(Math.random() * availableCams.length)];
-                currentState[randomCam] = new Date().getTime(); // Salva o tempo atual em vez de só 'true'
+                currentState[randomCam] = new Date().getTime(); 
                 saveCamerasState(currentState);
                 updateUI();
             }
@@ -254,6 +251,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const updateClock = () => {
+        if (localStorage.getItem('isPaused') === 'true') return;
         const now = new Date().getTime();
         const elapsedMs = now - startTime;
         
@@ -264,7 +262,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (hours >= 6) {
             localStorage.setItem('gameState', 'victory');
-            window.location.href = '../pages/vitoria.html';
+            window.top.location.href = '../pages/vitoria.html';
             return;
         }
 
@@ -275,19 +273,35 @@ document.addEventListener('DOMContentLoaded', () => {
             clockElement.textContent = `${displayHours}:${displayMinutes} AM`;
         }
         
-        // Atualiza a UI a cada segundo para verificar os timers das anomalias!
         updateUI();
     };
 
-    // Atualiza relógio e UI a cada 1 segundo
+    document.addEventListener('keydown', (e) => {
+        if (e.key.toLowerCase() === 'p') {
+            const topDoc = window.top.document;
+            const overlay = topDoc.getElementById('pause-overlay');
+            if (overlay) {
+                const isPaused = localStorage.getItem('isPaused') === 'true';
+                if (isPaused) {
+                    localStorage.setItem('isPaused', 'false');
+                    overlay.style.display = 'none';
+                } else {
+                    localStorage.setItem('isPaused', 'true');
+                    overlay.style.display = 'flex';
+                }
+            }
+        }
+    });
+
     setInterval(() => {
         updateClock();
     }, 1000);
 
-    // Sorteio a cada 5 segundos
-    setInterval(() => {
-        raffleAnomaly();
-    }, 5000);
+    if (currentPage === 'hub.html') {
+        setInterval(() => {
+            raffleAnomaly();
+        }, 5000);
+    }
 
     updateUI();
     updateClock();

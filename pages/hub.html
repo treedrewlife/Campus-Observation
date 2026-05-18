@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Central de Observação</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/cameras.css">
+    <style>
+        #tela-monitor {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .camera-display {
+            width: 90%;
+            max-width: 1200px;
+            aspect-ratio: 16 / 9;
+            flex-grow: 0 !important;
+        }
+
+        #pause-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            z-index: 100;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .pause-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+        }
+    </style>
+</head>
+<body class="camera-view">
+    <div class="overlay-video"></div>
+
+    <div id="pause-overlay">
+        <h1 class="glitch" data-text="SISTEMA PAUSADO">SISTEMA PAUSADO</h1>
+        <div class="pause-menu">
+            <button id="btn-continuar" class="btn-nav">CONTINUAR</button>
+            <button id="btn-reiniciar" class="btn-nav">REINICIAR NOITE</button>
+            <button id="btn-menu-principal" class="btn-nav">VOLTAR AO MENU</button>
+        </div>
+    </div>
+
+    <main class="monitor-container">
+        <header class="cam-header">
+            <div class="status-bar">
+                <span id="feed-status">FEED_ESTÁVEL</span>
+                <span class="blink">●</span>
+            </div>
+            <div id="relogio-digital">00:00 AM</div>
+        </header>
+
+        <div class="camera-display">
+            <iframe id="tela-monitor" src="camera1.html"></iframe>
+        </div>
+
+        <nav class="controles-camera">
+            <button onclick="mudarCamera('camera1.html', 'cam1', this)" class="btn-nav active">01</button>
+            <button onclick="mudarCamera('camera2.html', 'cam2', this)" class="btn-nav">02</button>
+            <button onclick="mudarCamera('camera3.html', 'cam3', this)" class="btn-nav">03</button>
+            <button onclick="mudarCamera('camera4.html', 'cam4', this)" class="btn-nav">04</button>
+            <button onclick="mudarCamera('camera5.html', 'cam5', this)" class="btn-nav">05</button>
+            <button onclick="mudarCamera('camera6.html', 'cam6', this)" class="btn-nav">06</button>
+        </nav>
+
+        <div id="minimap-container"></div>
+    </main>
+
+    <script>
+        localStorage.setItem('currentView', 'cam1');
+        localStorage.setItem('isPaused', 'false');
+
+        function mudarCamera(url, camId, btnElement) {
+            if (localStorage.getItem('isPaused') === 'true') return;
+            
+            document.getElementById('tela-monitor').src = url;
+            
+            document.querySelectorAll('.btn-nav').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            btnElement.classList.add('active');
+            localStorage.setItem('currentView', camId);
+        }
+
+        document.getElementById('btn-continuar').addEventListener('click', () => {
+            localStorage.setItem('isPaused', 'false');
+            document.getElementById('pause-overlay').style.display = 'none';
+        });
+
+        document.getElementById('btn-reiniciar').addEventListener('click', () => {
+            localStorage.setItem('startTime', new Date().getTime());
+            localStorage.setItem('camerasState', JSON.stringify({ cam1: false, cam2: false, cam3: false, cam4: false, cam5: false, cam6: false }));
+            localStorage.setItem('gameState', 'active');
+            localStorage.setItem('isPaused', 'false');
+            window.location.reload();
+        });
+
+        document.getElementById('btn-menu-principal').addEventListener('click', () => {
+            window.location.href = '../index.html';
+        });
+    </script>
+    <script src="../js/gameLogic.js"></script>
+</body>
+</html>
