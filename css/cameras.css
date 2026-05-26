@@ -22,7 +22,7 @@ body.camera-view {
 .monitor-container {
     display: flex;
     flex-direction: column;
-    align-items: center; 
+    align-items: center; /*gpt*/
     height: 100vh;
     padding: 20px;
     box-sizing: border-box;
@@ -99,18 +99,15 @@ body.camera-view {
     box-shadow: 0 0 15px var(--neon-green);
 }
 
-
 #btn-reportar {
-    position: absolute;
-    z-index: 11;
-    top: 465px;
-    left: 750px;
     background: #0a0a0a;
     color: #747474;
-    padding: 15px 10px;
+    padding: 12px 16px;
     font-weight: bold;
     cursor: pointer;
     text-transform: uppercase;
+    border: 1px solid #333;
+    font-family: inherit;
 }
 
 #btn-reportar:hover {
@@ -124,4 +121,47 @@ body.camera-view {
     align-items: center;
     width: 100%;
     padding: 10px 20px;
+}
+
+.status-bar{
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    color:#72ff72;
+    font-family:Consolas, monospace;
+    font-size:14px;
+    letter-spacing:2px;
+}
+
+.report-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    position: relative;
+}
+
+.painel-style {
+    display: flex;
+    gap: 10px;
+    background: rgba(0, 0, 0, 0.85);
+    padding: 5px 10px;
+    border: 1px solid var(--neon-green);
+    box-shadow: 0 0 10px rgba(0, 255, 65, 0.3);
+}
+
+.btn-opcao {
+    background: transparent;
+    color: var(--neon-green);
+    border: 1px solid var(--neon-green);
+    padding: 5px 15px;
+    font-family: var(--terminal-font);
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+}
+
+.btn-opcao:hover {
+    background: var(--neon-green);
+    color: var(--dark-bg);
 }

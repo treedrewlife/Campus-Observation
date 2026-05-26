@@ -1,0 +1,141 @@
+const TIMER_KEY = "evento_timer";
+
+// ===== CONFIG =====
+const DURACAO_MINUTOS = 10;
+
+// horário fake visual:
+// começa em 00:00 e termina em 05:00
+const HORA_VISUAL_TOTAL = 5 * 60; // 5h em minutos
+
+function iniciarTimer() {
+  const agora = Date.now();
+
+  // se já existe timer, usa ele
+  let dados = JSON.parse(localStorage.getItem(TIMER_KEY));
+
+  if (!dados) {
+    dados = {
+      inicioReal: agora,
+      duracaoReal: DURACAO_MINUTOS * 60 * 1000
+    };
+
+    localStorage.setItem(TIMER_KEY, JSON.stringify(dados));
+  }
+
+  atualizar(dados);
+
+  setInterval(() => {
+    atualizar(dados);
+  }, 1000);
+}
+
+function atualizar(dados) {
+  const agora = Date.now();
+
+  const tempoPassado = agora - dados.inicioReal;
+
+  const progresso =
+    Math.min(tempoPassado / dados.duracaoReal, 1);
+
+  // converte progresso de 10min -> 5h visuais
+  const minutosVirtuais =
+    progresso * HORA_VISUAL_TOTAL;
+
+  const horas = Math.floor(minutosVirtuais / 60);
+  const minutos = Math.floor(minutosVirtuais % 60);
+
+  const texto =
+    String(horas).padStart(2, "0") +
+    ":" +
+    String(minutos).padStart(2, "0");
+
+  document.getElementById("timer").innerText = texto;
+
+  // terminou
+  if (progresso >= 1) {
+    console.log("acabou");
+  }
+}
+
+iniciarTimer();
+
+document.addEventListener("keydown", (e) => {
+
+    // F5
+    if (e.key === "F5") {
+
+        e.preventDefault();
+    }
+
+    // CTRL + R
+    if (
+        (e.ctrlKey || e.metaKey) &&
+        e.key.toLowerCase() === "r"
+    ) {
+
+        e.preventDefault();
+    }
+});
+
+// Detecta reload da página
+const navEntries =
+    performance.getEntriesByType("navigation");
+
+if (
+    navEntries.length > 0 &&
+    navEntries[0].type === "reload"
+) {
+
+    // ação se der refresh
+    alert("Refresh bloqueado");
+
+    // exemplo:
+    // window.location.href = "gameover.html";
+}
+
+const statusConexao = document.getElementById("status-conexao");
+const btnReportar = document.getElementById("btn-reportar");
+
+const estados = [
+    "CONEXÃO_ESTÁVEL",
+    "CONEXÃO_INSTÁVEL",
+    "PERDA_DE_SINAL",
+    "FORA_DO_AR"
+];
+
+let erros = Number(localStorage.getItem("erros")) || 0;
+
+atualizarStatus();
+
+function atualizarStatus(){
+
+    const indice = Math.min(erros, estados.length - 1);
+
+    statusConexao.textContent = estados[indice];
+
+    /* game over automático */
+    if(estados[indice] === "FORA_DO_AR"){
+
+        setTimeout(() => {
+
+            window.location.href = "gameover.html";
+
+        }, 1000);
+    }
+}
+
+
+function registrarErro(){
+
+    erros++;
+
+   localStorage.setItem("erros", erros);
+
+    atualizarStatus();
+}
+
+btnReportar.addEventListener("click", () => {
+
+    registrarErro();
+
+});
