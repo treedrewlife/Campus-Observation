@@ -70,7 +70,7 @@ function atualizarStatus() {
 
     if (estados[indice] === "FORA_DO_AR") {
         setTimeout(() => {
-            window.location.href = "../index.html"; //mudar para tela de game over depois
+            window.location.href = "gameover.html";
         }, 1000);
     }
 }
@@ -183,9 +183,7 @@ function verificarAnomaliasAtivas() {
     }
 
     if (total >= 4) {
-
-        window.location.href =
-            "../index.html";
+        window.location.href = "gameover.html";
     }
 }
 

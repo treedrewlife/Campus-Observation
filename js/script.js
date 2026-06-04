@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Efeito visual antes de sair
         document.body.style.opacity = '0';
         setTimeout(() => {
-            window.location.href = '../Pages/hub.html'; // Ajuste o caminho conforme sua pasta
+            window.location.href = 'Pages/login.html';
         }, 500);
     });
 

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SINAL PERDIDO - GAME OVER</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        body {
+            background-color: #000 !important;
+            --glitch-red: #ff003c;
+            --terminal-green: #ff003c;
+            --terminal-dark-green: rgba(255, 0, 60, 0.1);
+        }
+        .terminal-container {
+            border-color: #ff003c !important;
+            box-shadow: 0 0 20px var(--terminal-dark-green), inset 0 0 10px var(--terminal-dark-green) !important;
+            background: rgba(10, 0, 0, 0.95) !important;
+            text-align: center;
+        }
+        .jumpscare-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: #000;
+            z-index: 10000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: jumpscare-flash 1.5s ease-out forwards;
+        }
+        .creature-silhouette {
+            width: 70%;
+            height: 70%;
+            background: radial-gradient(circle, #ff003c 10%, #000 70%), repeating-conic-gradient(from 45deg, #111 0deg 30deg, #000 30deg 60deg);
+            clip-path: polygon(50% 0%, 90% 20%, 100% 60%, 75% 100%, 25% 100%, 0% 60%, 10% 20%);
+            animation: creature-spasm 0.25s infinite alternate;
+            filter: contrast(250%) brightness(60%);
+        }
+        @keyframes jumpscare-flash {
+            0% {
+                opacity: 1;
+                background-color: #fff;
+            }
+            15% {
+                background-color: #ff003c;
+            }
+            30% {
+                background-color: #000;
+            }
+            85% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                pointer-events: none;
+            }
+        }
+        @keyframes creature-spasm {
+            0% {
+                transform: scale(0.9) translate(5px, -5px) rotate(-1deg);
+                filter: invert(0);
+            }
+            100% {
+                transform: scale(1.25) translate(-5px, 5px) rotate(2deg);
+                filter: invert(1) hue-rotate(180deg);
+            }
+        }
+        .fail-block {
+            margin-top: 30px;
+            border: 2px solid #ff003c;
+            background: rgba(45, 0, 0, 0.4);
+            padding: 25px;
+            box-shadow: 0 0 15px rgba(255, 0, 60, 0.3);
+        }
+        .fail-header {
+            font-size: 3.5rem;
+            color: #ff003c;
+            font-weight: bold;
+            letter-spacing: 2px;
+            animation: pulse-red 0.5s infinite alternate;
+        }
+        @keyframes pulse-red {
+            0% { opacity: 0.5; text-shadow: 0 0 5px #ff003c; }
+            100% { opacity: 1; text-shadow: 0 0 15px #ff003c; }
+        }
+    </style>
+</head>
+<body>
+    <div class="jumpscare-overlay" id="jumpscare">
+        <div class="creature-silhouette"></div>
+    </div>
+
+    <div class="overlay"></div>
+
+    <main class="terminal-container">
+        <header class="terminal-header">
+            <div class="status-bar">
+                <span style="color: #ff003c;">SIGNAL: CRITICAL_FAILURE</span>
+                <span class="blink" style="color: #ff003c;">●</span>
+            </div>
+            <h1 class="glitch" data-text="CONEXÃO PERDIDA" style="color: #ff003c;">CONEXÃO PERDIDA</h1>
+        </header>
+
+        <section class="fail-block">
+            <div class="fail-header">GAME OVER</div>
+            <p style="margin-top: 15px; font-size: 1.1rem; color: #ff003c;">O campus foi inteiramente comprometido. Não há sinal de sobreviventes.</p>
+        </section>
+
+        <nav class="menu-options" style="margin-top: 40px; justify-content: center; flex-direction: row; gap: 20px;">
+            <button id="btn-tentar" style="color: #ff003c;"><span class="prompt" style="color: rgba(255,0,60,0.5)">[</span> RECONECTAR SINAL <span class="prompt" style="color: rgba(255,0,60,0.5)">]</span></button>
+            <button id="btn-menu" style="color: #ff003c;"><span class="prompt" style="color: rgba(255,0,60,0.5)">[</span> VOLTAR AO MENU <span class="prompt" style="color: rgba(255,0,60,0.5)">]</span></button>
+        </nav>
+
+        <footer class="terminal-footer" style="border-top-color: rgba(255, 0, 60, 0.15)">
+            <p style="color: #ff003c; opacity: 0.5;">V0.8.2-BETA | ALERTA DA ADMINISTRAÇÃO FATEC</p>
+        </footer>
+    </main>
+
+    <script>
+        const audio = new Audio('../assets/sound/alho.mp3');
+        audio.volume = 0.5;
+        audio.play().catch(() => {});
+
+        setTimeout(() => {
+            const jumpscare = document.getElementById('jumpscare');
+            if (jumpscare) jumpscare.remove();
+        }, 1500);
+
+        document.getElementById('btn-tentar').addEventListener('click', () => {
+            localStorage.clear();
+            window.location.href = '../index.html';
+        });
+
+        document.getElementById('btn-menu').addEventListener('click', () => {
+            localStorage.clear();
+            window.location.href = '../index.html';
+        });
+    </script>
+</body>
+</html>

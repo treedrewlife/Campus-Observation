@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SISTEMA CPD - ACESSO RESTREITO</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .login-box {
+            width: 100%;
+            max-width: 400px;
+            padding: 30px;
+            border: 1px solid var(--terminal-green);
+            background: rgba(0, 15, 0, 0.95);
+            box-shadow: 0 0 20px var(--terminal-dark-green), inset 0 0 10px var(--terminal-dark-green);
+            text-align: center;
+        }
+        .form-group {
+            margin-top: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            text-align: left;
+        }
+        input[type="text"], input[type="password"] {
+            background: transparent;
+            border: 1px solid var(--terminal-green);
+            color: var(--terminal-green);
+            font-family: var(--font-main);
+            font-size: 1.2rem;
+            padding: 10px;
+            outline: none;
+            text-align: center;
+            box-shadow: inset 0 0 5px rgba(0, 255, 102, 0.1);
+        }
+        input[type="password"] {
+            letter-spacing: 5px;
+        }
+        input[type="text"]:focus, input[type="password"]:focus {
+            box-shadow: 0 0 15px var(--terminal-green), inset 0 0 5px rgba(0, 255, 102, 0.2);
+        }
+        #error-msg {
+            margin-top: 15px;
+            font-size: 0.85rem;
+            min-height: 20px;
+            letter-spacing: 1px;
+        }
+        .login-footer {
+            margin-top: 25px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .login-footer button {
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay"></div>
+    
+    <main class="login-box">
+        <header>
+            <div class="status-bar" style="font-size: 0.75rem; margin-bottom: 10px; opacity: 0.7;">
+                <span>STATUS: SECURE_LINK</span>
+                <span class="blink">●</span>
+            </div>
+            <h2 class="glitch" data-text="ACESSO_CPD" style="font-size: 2rem;">ACESSO_CPD</h2>
+            <p style="font-size: 0.85rem; margin-top: 5px; opacity: 0.8;">SISTEMA DE SEGURANÇA CPD FATEC</p>
+        </header>
+
+        <form id="login-form">
+            <div class="form-group">
+                <label for="username">> USUÁRIO / ID DE SEGURANÇA:</label>
+                <input type="text" id="username" autocomplete="off" placeholder="ESTAGIARIO_CPD">
+            </div>
+
+            <div class="form-group" style="margin-top: 15px;">
+                <label for="password">> SENHA DE ACESSO:</label>
+                <input type="password" id="password" maxlength="8" autocomplete="off" placeholder="••••">
+            </div>
+
+            <div id="error-msg"></div>
+
+            <nav class="login-footer">
+                <button type="button" id="btn-voltar"><span class="prompt">[</span> RETORNAR <span class="prompt">]</span></button>
+                <button type="submit"><span class="prompt">[</span> ACESSAR <span class="prompt">]</span></button>
+            </nav>
+        </form>
+    </main>
+
+    <script src="../js/login.js"></script>
+</body>
+</html>
