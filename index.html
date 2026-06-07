@@ -11,25 +11,37 @@
 </head>
 <body>
     <div class="overlay"></div>
-    
+    <div id="intro-screen" class="intro-screen">
+    <pre id="boot-text"></pre>
+    </div>
     <main class="terminal-container">
         <header class="terminal-header">
+
             <div class="status-bar">
-                <span>SYSTEM_STATUS: ONLINE</span>
-                <span class="blink">●</span>
+                
+                    <span class="status-right">> SYSTEM_STATUS: <span class="blink">● Online </span> </span>  
+                    <span id="clock"></span>
+                           
             </div>
-            <h1 class="glitch" data-text="CAMPUS_OBSERVATION">CAMPUS_OBSERVATION</h1>
-            <p class="typing-text">> Monitoramento CPD Fatec... Identificando anomalias.</p>
+
+            <h1 class="title-clean" id="menu-title"> CAMPUS_OBSERVATION </h1>
+            <p class="typing-text">> Monitoramento_CPD_Fatec... Identificando_anomalias</p>
         </header>
         
         <nav class="menu-options">
-            <button id="iniciar"><span class="prompt">[</span> 01. INICIAR_SESSAO <span class="prompt">]</span></button>
-            <button id="configuracoes"><span class="prompt">[</span> 02. CONFIGURACOES <span class="prompt">]</span></button>
-            <button id="creditos"><span class="prompt">[</span> 03. ACESSAR_CREDITOS <span class="prompt">]</span></button>
+            <button id="iniciar">
+                <span class="prompt">[</span> 01. ACESSAR_SISTEMA <span class="prompt">]</span>
+            </button>
+            <button id="configuracoes">
+                <span class="prompt">[</span> 02. AJUSTAR_SISTEMA <span class="prompt">]</span>
+            </button>
+            <button id="creditos">
+                <span class="prompt">[</span> 03. ABORTAR_SISTEMA <span class="prompt">]</span>
+            </button>
         </nav>
 
         <footer class="terminal-footer">
-            <p>V0.8.2-BETA | CONNECTION: ENCRYPTED</p>
+            <p>V0.8.2-BETA | CONNECTION: ENCRYPTED | LAST SYNC: 03:14</p>
         </footer>
     </main>
     
