@@ -119,7 +119,7 @@ const handleButtons = () => {
 
       document.body.style.opacity = "0";
       setTimeout(() => {
-        window.location.href = "../Pages/cadastro.html";
+        window.location.href = "/Pages/cadastro.html";
       }, 500);
     });
   }
@@ -132,7 +132,7 @@ const handleButtons = () => {
 
   if (btnCreditos) {
     btnCreditos.addEventListener("click", () => {
-      window.location.href = "./Pages/creditos.html";
+      window.location.href = "/Pages/creditos.html";
     });
   }
 };
