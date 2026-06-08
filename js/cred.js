@@ -26,13 +26,7 @@ function updateClock() {
         "Campus Observation Project",
 
         "> DEVELOPMENT:",
-        "Seu Nome / Equipe",
-
-        "> GAME_DESIGN:",
-        "Seu Nome",
-
-        "> PROGRAMMING:",
-        "Seu Nome",
+        "Andrey Celestino de Oliveira /\n Gabriel Cavalcanti Martins /\n Kawã Weber Nascimento Brito /\n Nathan Carvalho de Farias \n",
 
         "> VISUAL_INTERFACE:",
         "Terminal UI System",
@@ -89,6 +83,6 @@ function updateClock() {
     setTimeout(() => {
         localStorage.clear();
 
-        window.location.href = "/index.html";
+        window.location.href = "./index.html";
     }, 10000); 
 }
