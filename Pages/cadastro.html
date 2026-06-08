@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PROTOCOLO DE INTEGRAÇÃO</title>
+    <script>
+    if (localStorage.getItem('tutorialConcluido') === 'true') {
+        window.location.href = '/pages/login.html';
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/cadastro.css">
+
+</head>
+
+<body>
+
+<div class="scanline"></div>
+
+
+<div class="container">
+
+    <div class="status">
+        <span>PROTOCOLO_DE_INTEGRAÇÃO</span>
+        <span>TERMINAL_LOCAL</span>
+    </div>
+    <div class="terminal">
+    <div id="boot-terminal"></div>
+    </div>
+
+    
+    <section class="step active" id="step1">
+        <h1>BEM-VINDO, OPERADOR.</h1>
+
+        <p>
+            Você foi selecionado para auxiliar no monitoramento
+            do sistema de vigilância do complexo.
+        </p>
+
+        <p>
+            Antes de acessar os terminais, será necessário concluir
+            um breve treinamento operacional.
+        </p>
+
+        <button onclick="nextStep(2)">
+            CONTINUAR
+        </button>
+    </section>
+
+   
+    <section class="step" id="step2">
+        <h2>FUNÇÃO DO OPERADOR</h2>
+
+        <p>
+            Sua responsabilidade consiste em observar múltiplas
+            câmeras e identificar possíveis anomalias.
+        </p>
+
+        <ul>
+            <li>Monitorar ambientes.</li>
+            <li>Comparar alterações visuais.</li>
+            <li>Reportar eventos suspeitos.</li>
+            <li>Manter a atenção durante todo o turno.</li>
+        </ul>
+
+        <button onclick="nextStep(3)">
+            ENTENDI
+        </button>
+    </section>
+
+    
+    <section class="step" id="step3">
+        <h2>PROTOCOLO DE ACESSO</h2>
+
+        <p>
+            Para registrar sua presença no sistema,
+            informe uma identificação de operador.
+        </p>
+
+        <input
+            type="text"
+            id="usuario"
+            placeholder="ID_DO_OPERADOR">
+
+        <input
+            type="password"
+            id="senha"
+            maxlength="8"
+            placeholder="CÓDIGO_DE_ACESSO">
+
+        <button onclick="registrar()">
+            FINALIZAR TREINAMENTO
+        </button>
+
+        <div id="mensagem"></div>
+    </section>
+
+</div>
+
+<script src="/js/cadastro.js" ></script>
+
+</body>
+</html>
