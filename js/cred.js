@@ -26,7 +26,7 @@ function updateClock() {
         "Campus Observation Project",
 
         "> DEVELOPMENT:",
-        "Andrey Celestino de Oliveira /\n Gabriel Cavalcanti Martins /\n Kawã Weber Nascimento Brito /\n Nathan Carvalho de Farias \n",
+        "Andrey Celestino de Oliveira", "Gabriel Cavalcanti Martins",  "Kawã Weber Nascimento Brito", "Nathan Carvalho de Farias",
 
         "> VISUAL_INTERFACE:",
         "Terminal UI System",
@@ -83,6 +83,6 @@ function updateClock() {
     setTimeout(() => {
         localStorage.clear();
 
-        window.location.href = "./index.html";
+        window.location.href = "../index.html";
     }, 10000); 
 }
