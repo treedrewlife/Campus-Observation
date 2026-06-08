@@ -163,7 +163,7 @@ function registrar() {
 
             setTimeout(() => {
                 window.location.href =
-                    "login.html";
+                    "../Pages/login.html";
             }, 600);
 
         }, 2500);
