@@ -247,16 +247,19 @@ export function tentarCorrigirAnomalia(tipoSelecionado) {
     const data = state.cameras[camId];
 
     if (!data) {
+        dispararEstatica();
         registrarErro();
         return false;
     }
 
     if (data.tipo === tipoSelecionado) {
         state.cameras[camId] = null;
+        dispararEstatica();
         salvar();
         renderCamera();
         return true;
     } else {
+        dispararEstatica();
         registrarErro();
         return false;
     }
@@ -320,7 +323,7 @@ function initCameraControls() {
 
         renderCamera();
 
-        dispararEstatica();
+        
     });
 }
 
