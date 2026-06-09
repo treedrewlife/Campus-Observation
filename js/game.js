@@ -212,7 +212,7 @@ function verificarAnomaliasAtivas() {
 // -------- RENDER CAMERA --------
 
 function getCameraSrc(camId, data) {
-    const base = "../assets/imagem";
+    const base = "./assets/imagem";
 
     return data
         ? `${base}/anomalia/${camId}-anomalia${data.id}.webp`
