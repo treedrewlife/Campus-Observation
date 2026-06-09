@@ -57,18 +57,6 @@ Quanto mais tempo a noite avança, mais perigosos e frequentes os eventos se tor
 
 ---
 
-## Controles
-
-| Ação              | Tecla         |
-| ----------------- | ------------- |
-| Alternar Câmeras  | Setas / Mouse |
-| Interagir         | E             |
-| Pausar            | ESC           |
-| Reportar Anomalia | ESPAÇO        |
-
----
-
-
 ## Estrutura do Projeto
 
 ```plaintext
