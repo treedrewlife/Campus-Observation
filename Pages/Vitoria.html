@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SHIFT COMPLETE</title>
+
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+
+<style>
+body{
+    font-family:'JetBrains Mono', monospace;
+}
+
+.container{
+    opacity:0;
+    animation: fadeIn 1.2s forwards;
+}
+
+@keyframes fadeIn{
+    to { opacity:1; }
+}
+
+.box{
+    margin-top:20px;
+    padding:25px;
+    border:1px solid rgba(0,255,102,0.4);
+    background:rgba(0,0,0,0.7);
+}
+
+.line{
+    opacity:0;
+    transform:translateY(8px);
+    transition:.3s;
+    margin-bottom:10px;
+}
+
+.line.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.ok{ color:#00ff66; }
+.warn{ color:#ffd166; }
+
+.final{
+    margin-top:25px;
+    padding-top:15px;
+    border-top:1px solid rgba(0,255,102,0.2);
+    opacity:0;
+    transition:1s;
+}
+
+.final.show{
+    opacity:1;
+}
+
+button{
+    margin-top:25px;
+    background:none;
+    border:1px solid #00ff66;
+    color:#00ff66;
+    padding:12px 18px;
+    cursor:pointer;
+    font-family:inherit;
+    transition:.2s;
+}
+
+button:hover{
+    background:#00ff66;
+    color:#000;
+}
+</style>
+</head>
+
+<body>
+
+<div class="scanline"></div>
+<div class="overlay"></div>
+
+<main class="terminal-container container">
+
+    <div class="status-bar">
+        <span> STATUS: SHIFT END CONFIRMED </span>
+        <span id="clock"></span>
+    </div>
+
+    <h1 class="title-clean">TURNO FINALIZADO</h1>
+
+    <p class="typing-text" id="subtitle"></p>
+
+    <div class="box" id="log"></div>
+
+    <div class="final" id="final">
+        <p>> CONEXÃO COM TERMINAL ENCERRADA</p>
+        <p>> O SISTEMA NÃO REQUER MAIS SUA ATENÇÃO</p>
+        <p>> VOCÊ PODE DESCONECTAR</p>
+    </div>
+
+    <button id="btn">
+        [ DESCONECTAR ]
+    </button>
+
+</main>
+
+<script>
+
+function getGameData() {
+    const state = JSON.parse(localStorage.getItem("game_state"));
+
+    if (!state) return null;
+
+    const erros = state.erros || 0;
+
+    const inicio = state.timer?.inicioReal || Date.now();
+    const duracao = Date.now() - inicio;
+
+    const minutos = Math.floor(duracao / 60000);
+
+    const camerasAtivas = Object.values(state.cameras || {})
+        .filter(c => c !== null).length;
+
+    const eficiencia = Math.max(0, 100 - (erros * 15));
+
+    return {
+        erros,
+        minutos,
+        camerasAtivas,
+        eficiencia
+    };
+}
+
+function buildLog(data) {
+
+    const logs = [];
+
+    logs.push(`> TEMPO DE SERVIÇO: ${data.minutos} MINUTOS`);
+
+    if (data.erros === 0) {
+        logs.push("> ERROS: ZERO DETECTADOS");
+    } else {
+        logs.push(`> ERROS REGISTRADOS: ${data.erros}`);
+    }
+
+    if (data.erros <= 1) {
+        logs.push("> ESTABILIDADE DO OPERADOR: ALTA");
+    } else if (data.erros <= 3) {
+        logs.push("> ESTABILIDADE DO OPERADOR: MODERADA");
+    } else {
+        logs.push("> ESTABILIDADE DO OPERADOR: BAIXA");
+    }
+
+    logs.push(`> CÂMERAS EM ATIVIDADE: ${data.camerasAtivas}`);
+    logs.push(`> EFICIÊNCIA DO TURNO: ${data.eficiencia}%`);
+
+    logs.push("");
+    logs.push("> STATUS FINAL: TURNO CONCLUÍDO");
+    logs.push("> CONEXÃO ENCERRADA COM SUCESSO");
+
+    return logs;
+}
+
+let logData = [];
+let index = 0;
+
+/* CLOCK */
+setInterval(() => {
+    const now = new Date();
+    document.getElementById("clock").textContent =
+        "> " + now.toLocaleTimeString('pt-BR', {
+            hour: '2-digit',
+            minute: '2-digit'
+        });
+}, 1000);
+
+/* TYPE SUBTITLE */
+const subtitle = "> Finalizando relatório do turno operacional...";
+let i = 0;
+
+function typeSubtitle() {
+    if (i < subtitle.length) {
+        document.getElementById("subtitle").textContent += subtitle[i++];
+        setTimeout(typeSubtitle, 25);
+    } else {
+        startLog();
+    }
+}
+
+/* LOG ANIMADO */
+function show() {
+
+    const box = document.getElementById("log");
+
+    if (index >= logData.length) {
+        document.getElementById("final").classList.add("show");
+        return;
+    }
+
+    const line = document.createElement("div");
+    line.classList.add("line");
+
+    line.textContent = logData[index];
+
+    box.appendChild(line);
+
+    setTimeout(() => line.classList.add("show"), 50);
+
+    index++;
+
+    box.scrollTop = box.scrollHeight;
+
+    setTimeout(show, 600);
+}
+
+function startLog() {
+
+    const data = getGameData();
+
+    if (!data) {
+        logData = ["> ERRO: DADOS DO TURNO NÃO ENCONTRADOS"];
+    } else {
+        logData = buildLog(data);
+    }
+
+    show();
+}
+
+/* BOTÃO FINAL */
+document.getElementById("btn").addEventListener("click", () => {
+
+    localStorage.removeItem("game_state");
+
+    document.body.style.opacity = "0";
+
+    setTimeout(() => {
+        window.location.href = "../Pages/creditos.html";
+    }, 800);
+});
+
+/* INIT */
+window.onload = () => {
+    setTimeout(typeSubtitle, 500);
+};
+
+</script>
+
+</body>
+</html>
