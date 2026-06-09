@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HUB - Monitoramento</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/cameras.css">
+</head>
+<body class="camera-view">
+    
+    <div class="overlay-video"></div>
+
+    <main class="monitor-container">
+        <div class="scanline"></div>
+        <header class="cam-header">
+            <div class="status-bar">
+                <span id="status-conexao">CONEXÃO_ESTÁVEL</span>
+            </div>
+            <div id="timer">00:00 AM</div>
+        </header>
+
+        <div class="camera-display" id="camera-container">
+            <div class="cam-info" id="cam-title">CAM 01 - LAB 3.05</div>
+            <img src="../assets/imagem/camera/camera1.webp" id="feed-camera" alt="Monitoramento">
+        </div>   
+
+        <nav class="controles-camera">
+            <button class="btn-nav active" data-cam="camera1">01</button>
+            <button class="btn-nav" data-cam="camera2">02</button>
+            <button class="btn-nav" data-cam="camera3">03</button>
+            <button class="btn-nav" data-cam="camera4">04</button>
+            <button class="btn-nav" data-cam="camera5">05</button>
+            <button class="btn-nav" data-cam="camera6">06</button>
+            <div class="report-container">
+                <button id="btn-reportar"> DETECTAR ANOMALIA </button>
+            </div>
+        </nav>
+    </main>
+    
+    <script>window.CAM_ID = "camera1";</script>
+    <script type="module" src="../js/game.js"></script>
+    <script type="module" src="../js/report.js"></script>
+    <div id="efeito-estatica"></div>
+</body>
+</html>
