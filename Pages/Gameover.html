@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/gameover.css">
+    <link rel="stylesheet" href="/css/gameover.css">
 </head>
 <body>
     <div class="jumpscare-overlay" id="jumpscare">
@@ -42,15 +42,17 @@
     </main>
 
     <script>
-        
+
         document.getElementById('btn-tentar').addEventListener('click', () => {
+            localStorage.removeItem('game_state');
             window.location.href = '../Pages/login.html';
         });
 
         document.getElementById('btn-menu').addEventListener('click', () => {
-            localStorage.clear();
+            localStorage.removeItem('game_state');
             window.location.href = '../index.html';
         });
+
     </script>
 </body>
 </html>
