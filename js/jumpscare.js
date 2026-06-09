@@ -12,13 +12,13 @@ export function acionarJumpscare() {
     container.style.display = "block";
 
     if (audio) {
-        audio.volume = 1;
+        audio.volume = 0.3;
         audio.play().catch(() => {});
     }
 
     setTimeout(() => {
         if (staticImg) {
-            staticImg.style.opacity = "1";
+            staticImg.style.opacity = "0.8";
         }
     }, 1000);
 
