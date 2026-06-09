@@ -8,8 +8,19 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/cameras.css">
+    <link rel="stylesheet" href="../css/jumpscare.css">
 </head>
 <body class="camera-view">
+
+    <div id="jumpscare-container">
+        <div id="jumpscare-monster">
+            <img src="../assets/imagem/body.png" class="parte-monstro busto">
+            <img src="../assets/imagem/low.png" class="parte-monstro inferior animar-mandibula">
+            <img src="../assets/imagem/upper.png" class="parte-monstro superior">
+        </div>
+        <img src="../assets/imagem/estatica.gif" id="jumpscare-static" alt="Sinal perdido">
+        <audio id="jumpscare-audio" src="../assets/sound/jumpscare.mp3"></audio>
+    </div>
     
     <div class="overlay-video"></div>
 
@@ -24,6 +35,8 @@
 
         <div class="camera-display" id="camera-container">
             <div class="cam-info" id="cam-title">CAM 01 - LAB 3.05</div>
+            <img src="../assets/imagem/estatica.gif" id="static-overlay" alt="Estática">
+            <audio id="static-audio" src="../assets/sound/estatica.mp3" loop autoplay></audio>
             <img src="../assets/imagem/camera/camera1.webp" id="feed-camera" alt="Monitoramento">
         </div>   
 
@@ -44,5 +57,9 @@
     <script type="module" src="../js/game.js"></script>
     <script type="module" src="../js/report.js"></script>
     <div id="efeito-estatica"></div>
+    <script type="module">
+        import { inicializarEstatica } from '../js/estatica.js';
+        inicializarEstatica();
+    </script>
 </body>
 </html>
