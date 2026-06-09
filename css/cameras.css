@@ -5,8 +5,8 @@
 
 
 :root {
-    --neon-green: #00ff41;
-    --dark-bg: #0a0a0a;
+    --neon-green: #00ff66;
+    --dark-bg: #0d0d0d;
     --terminal-font: 'JetBrains Mono', monospace;
 }
 
@@ -22,7 +22,7 @@ body.camera-view {
 .monitor-container {
     display: flex;
     flex-direction: column;
-    align-items: center; 
+    align-items: center; /*gpt*/
     height: 100vh;
     padding: 20px;
     box-sizing: border-box;
@@ -53,13 +53,13 @@ body.camera-view {
     justify-content: center;
     align-items: center;
     border: 1px solid var(--neon-green);
-    box-shadow: inset 0 0 20px #00ff4133;
+    box-shadow: inset 0 0 10px rgba(0, 204, 136, 0.15);
 }
 
 #feed-camera {
     max-width: 100%;
     max-height: 100%;
-    filter: grayscale(0.3) contrast(1.2) brightness(0.8);
+    filter: grayscale(0.3) contrast(1.05) brightness(0.85);
     transition: filter 0.3s ease;
 }
 
@@ -99,18 +99,15 @@ body.camera-view {
     box-shadow: 0 0 15px var(--neon-green);
 }
 
-
 #btn-reportar {
-    position: absolute;
-    z-index: 11;
-    top: 465px;
-    left: 750px;
     background: #0a0a0a;
     color: #747474;
-    padding: 15px 10px;
+    padding: 12px 16px;
     font-weight: bold;
     cursor: pointer;
     text-transform: uppercase;
+    border: 1px solid #333;
+    font-family: inherit;
 }
 
 #btn-reportar:hover {
@@ -124,4 +121,99 @@ body.camera-view {
     align-items: center;
     width: 100%;
     padding: 10px 20px;
+}
+
+.status-bar{
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    color:#00cc88;
+    font-family:Consolas, monospace;
+    font-size:14px;
+    letter-spacing:2px;
+}
+
+.report-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    position: relative;
+}
+
+.painel-style {
+    display: flex;
+    gap: 10px;
+    background: rgba(0, 0, 0, 0.85);
+    padding: 5px 10px;
+    border: 1px solid var(--neon-green);
+    box-shadow: 0 0 10px rgba(0, 255, 65, 0.3);
+}
+
+.btn-opcao {
+    background: transparent;
+    color: var(--neon-green);
+    border: 1px solid var(--neon-green);
+    padding: 5px 15px;
+    font-family: var(--terminal-font);
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+}
+
+.btn-opcao:hover {
+    background: var(--neon-green);
+    color: var(--dark-bg);
+}
+
+.signal-good {
+    color: #00ff66;
+}
+
+.signal-warning {
+    color: #e2c777;
+}
+
+.signal-danger {
+    color: #e79c50;
+}
+
+.signal-dead {
+    color: #ff3333;
+    animation: signalBlink 0.25s infinite;
+}
+
+@keyframes signalBlink {
+    50% {
+        opacity: 0;
+    }
+}
+
+.scanline {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom,transparent 0%,rgba(0,255,100,0.05) 50%,transparent 100%);
+    animation: scan 4s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes scan {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100%); }
+        }
+
+#efeito-estatica {
+    position: fixed;
+    inset: 0;
+    background: url("../assets/imagem/ui/static.gif"); /* pode usar gif ou noise */
+    background-size: cover;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 9999;
+    transition: opacity 0.1s;
+}
+
+#efeito-estatica.ativo {
+    opacity: 0.9;
 }
