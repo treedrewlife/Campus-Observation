@@ -262,7 +262,7 @@ export function tentarCorrigirAnomalia(tipoSelecionado) {
     }
 }
 
- function getProgressoJogo() {
+ export function getProgressoJogo() {
     return (
         (Date.now() - state.timer.inicioReal) /
         state.timer.duracaoReal
