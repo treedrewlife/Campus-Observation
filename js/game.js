@@ -208,7 +208,7 @@ function verificarAnomaliasAtivas() {
 
     if (total >= 4) {
         acionarJumpscare(); 
-
+        }
     } else {
         tempoAcumulado = 0;
     }
