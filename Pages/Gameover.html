@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SINAL PERDIDO - GAME OVER</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="/css/gameover.css">
+</head>
+<body>
+    <div class="jumpscare-overlay" id="jumpscare">
+        <div class="creature-silhouette"></div>
+    </div>
+
+    <div class="overlay"></div>
+
+    <main class="terminal-container">
+        <header class="terminal-header">
+            <div class="status-bar">
+                <span style="color: #ff003c;">SIGNAL: CRITICAL_FAILURE</span>
+                <span class="blink" style="color: #ff003c;">●</span>
+            </div>
+            <h1 class="glitch" data-text="CONEXÃO PERDIDA" style="color: #ff003c;">CONEXÃO PERDIDA</h1>
+        </header>
+
+        <section class="fail-block">
+            <div class="fail-header">GAME OVER</div>
+            <p style="margin-top: 15px; font-size: 1.1rem; color: #ff003c;">O campus foi inteiramente comprometido. Não há sinal de sobreviventes.</p>
+        </section>
+
+        <nav class="menu-options" style="margin-top: 40px; justify-content: center; flex-direction: row; gap: 20px;">
+            <button id="btn-tentar" style="color: #ff003c;"><span class="prompt" style="color: rgba(255,0,60,0.5)">[</span> RECONECTAR SINAL <span class="prompt" style="color: rgba(255,0,60,0.5)">]</span></button>
+            <button id="btn-menu" style="color: #ff003c;"><span class="prompt" style="color: rgba(255,0,60,0.5)">[</span> VOLTAR AO MENU <span class="prompt" style="color: rgba(255,0,60,0.5)">]</span></button>
+        </nav>
+
+        <footer class="terminal-footer" style="border-top-color: rgba(255, 0, 60, 0.15)">
+            <p style="color: #ff003c; opacity: 0.5;">V0.8.2-BETA | ALERTA DA ADMINISTRAÇÃO FATEC</p>
+        </footer>
+    </main>
+
+    <script>
+        
+        document.getElementById('btn-tentar').addEventListener('click', () => {
+            window.location.href = '../Pages/login.html';
+        });
+
+        document.getElementById('btn-menu').addEventListener('click', () => {
+            localStorage.clear();
+            window.location.href = '../index.html';
+        });
+    </script>
+</body>
+</html>
