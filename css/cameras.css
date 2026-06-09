@@ -22,7 +22,7 @@ body.camera-view {
 .monitor-container {
     display: flex;
     flex-direction: column;
-    align-items: center; /*gpt*/
+    align-items: center; 
     height: 100vh;
     padding: 20px;
     box-sizing: border-box;
@@ -206,7 +206,7 @@ body.camera-view {
 #efeito-estatica {
     position: fixed;
     inset: 0;
-    background: url("../assets/imagem/ui/static.gif"); /* pode usar gif ou noise */
+    background: url("../assets/imagem/ui/static.gif"); 
     background-size: cover;
     opacity: 0;
     pointer-events: none;
