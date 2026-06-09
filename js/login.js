@@ -30,6 +30,8 @@ document.addEventListener('DOMContentLoaded', () => {
             errorMsg.style.textShadow = '0 0 5px #00ff41';
 
             setTimeout(() => {
+                
+                localStorage.removeItem('game_state');
 
                 localStorage.setItem(
                     'gameState',
