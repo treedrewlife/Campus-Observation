@@ -1,8 +1,8 @@
 // Feito por Drey
 export const configEstatica = {
-    volumeBase: 0.05,
-    volumeSpike: 0.6,
-    tempoFade: 500
+    volumeBase: 0.001,
+    volumeSpike: 0.01,
+    tempoFade: 100
 };
 
 let fadeAudioInterval;
