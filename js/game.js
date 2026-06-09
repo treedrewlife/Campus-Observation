@@ -242,7 +242,7 @@ function renderCamera() {
 
 // ----------------
 
-function tentarCorrigirAnomalia(tipoSelecionado) {
+export function tentarCorrigirAnomalia(tipoSelecionado) {
     const camId = window.CAM_ID;
     const data = state.cameras[camId];
 
