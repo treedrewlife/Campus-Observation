@@ -1,5 +1,8 @@
 // Feito por Drey
 export function acionarJumpscare() {
+
+    window.permitirSaida = true;
+    
     const container = document.getElementById("jumpscare-container");
     const staticImg = document.getElementById("jumpscare-static");
     const audio = document.getElementById("jumpscare-audio");
