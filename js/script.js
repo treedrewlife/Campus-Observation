@@ -126,7 +126,7 @@ const handleButtons = () => {
 
   if (btnConfig) {
     btnConfig.addEventListener("click", () => {
-      alert("Configurações: Ajuste de volume e sensibilidade (Em breve)");
+      window.location.href = "./Pages/configuracoes.html";
     });
   }
 

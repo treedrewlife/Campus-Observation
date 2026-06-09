@@ -12,7 +12,9 @@ export function acionarJumpscare() {
     container.style.display = "block";
 
     if (audio) {
-        audio.volume = 0.3;
+        const savedVolume = localStorage.getItem('game_volume');
+        const volumeFactor = savedVolume !== null ? parseFloat(savedVolume) : 1.0;
+        audio.volume = 0.3 * volumeFactor;
         audio.play().catch(() => {});
     }
 

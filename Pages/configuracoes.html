@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJUSTAR SISTEMA - CONFIGURAÇÕES</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../css/configuracoes.css">
+</head>
+
+<body>
+    <div class="scanline"></div>
+
+    <main class="container">
+        <header class="status-header">
+            <div class="status-bar">
+                <span>PAINEL_DE_CONTROLE</span>
+                <span class="led-green"></span>
+            </div>
+            <div class="sys-info">
+                <span>PORT: 8080</span>
+                <span>SYS_CONFIG: LIVE_UPDATE</span>
+            </div>
+        </header>
+
+        <form id="config-form">
+            <div class="form-group">
+                <label for="volume-control">> VOLUME_GERAL:</label>
+                <div class="slider-container">
+                    <input type="range" id="volume-control" min="0" max="100" value="50">
+                    <span id="volume-value">50%</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="noise-opacity">> OPACIDADE_ESTATICA:</label>
+                <div class="slider-container">
+                    <input type="range" id="noise-opacity" min="0" max="100" value="15">
+                    <span id="noise-value">15%</span>
+                </div>
+            </div>
+
+            <div class="form-group" style="margin-top: 30px;">
+                <label>> BANCO_DE_DADOS:</label>
+                <button type="button" id="btn-limpar-dados" class="btn-danger">
+                    RESTAURAR PADRÕES DO SISTEMA
+                </button>
+            </div>
+
+            <div id="save-status"></div>
+
+            <div class="footer-buttons">
+                <button type="button" id="btn-voltar">
+                    RETORNAR
+                </button>
+
+                <button type="submit">
+                    SALVAR
+                </button>
+            </div>
+        </form>
+    </main>
+
+    <script src="../js/configuracoes.js"></script>
+</body>
+
+</html>

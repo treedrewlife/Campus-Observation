@@ -1,7 +1,10 @@
 // Feito por Drey
+const savedVolume = localStorage.getItem('game_volume');
+const volumeFactor = savedVolume !== null ? parseFloat(savedVolume) : 1.0;
+
 export const configEstatica = {
-    volumeBase: 0.01,
-    volumeSpike: 0.03,
+    volumeBase: 0.01 * volumeFactor,
+    volumeSpike: 0.03 * volumeFactor,
     tempoFade: 300
 };
 

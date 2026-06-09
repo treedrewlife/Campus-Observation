@@ -330,6 +330,11 @@ function initCameraControls() {
 // ----------------
 
 function init() {
+    const savedNoise = localStorage.getItem("game_noise_opacity");
+    if (savedNoise !== null) {
+        document.documentElement.style.setProperty("--static-base-opacity", savedNoise);
+    }
+
     atualizarTimer();
     atualizarStatus();
     processarTempoOffline();
