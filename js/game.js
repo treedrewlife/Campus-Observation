@@ -212,11 +212,11 @@ function verificarAnomaliasAtivas() {
 // -------- RENDER CAMERA --------
 
 function getCameraSrc(camId, data) {
-    const base = "Campus-Observation/assets/images";
+    const base = "../assets/images";
 
     return data
-        ? `${base}/anomalia/${camId}-anomalia${data.id}.webp`
-        : `${base}/camera/${camId}.webp`;
+        ? `${base}/anomalias/${camId}-anomalia${data.id}.webp`
+        : `${base}/cameras/${camId}.webp`;
 }
 
 function renderCamera() {
