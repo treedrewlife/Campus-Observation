@@ -42,7 +42,7 @@ btnReportar.addEventListener('click', () => {
     painel.addEventListener('click', (evento) => {
         if (evento.target.classList.contains('btn-opcao')) {
             const tipo = evento.target.dataset.tipo;
-            tentarCorrigirAnomalia(tipo);
+            const acertou = tentarCorrigirAnomalia(tipo);
             if (acertou) {
              efeitoEstatica();
             }
