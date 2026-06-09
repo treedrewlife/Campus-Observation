@@ -1,3 +1,6 @@
+import { acionarJumpscare } from './jumpscare.js'; //Drey
+import { dispararEstatica } from './estatica.js'; //Drey
+
 const SAVE_KEY = "game_state";
 
 const sinais = [
@@ -202,6 +205,11 @@ function verificarAnomaliasAtivas() {
             registrarErro();
             tempoAcumulado = 0;
         }
+
+    if (total >= 4) {
+        acionarJumpscare(); //Drey
+    }
+
     } else {
         tempoAcumulado = 0;
     }
@@ -212,11 +220,11 @@ function verificarAnomaliasAtivas() {
 // -------- RENDER CAMERA --------
 
 function getCameraSrc(camId, data) {
-    const base = "../assets/images";
+    const base = "../assets/imagem";
 
     return data
-        ? `${base}/anomalias/${camId}-anomalia${data.id}.webp`
-        : `${base}/cameras/${camId}.webp`;
+        ? `${base}/anomalia/${camId}-anomalia${data.id}.webp`
+        : `${base}/camera/${camId}.webp`;
 }
 
 function renderCamera() {
@@ -269,7 +277,7 @@ function gameOver() {
     if (gameFinished) return;
     gameFinished = true;
     localStorage.removeItem("game_state");
-    window.location.href = "../Pages/Gameover.html";
+    acionarJumpscare();
 }
 
 function victory() {
@@ -313,6 +321,8 @@ function initCameraControls() {
         }
 
         renderCamera();
+
+        dispararEstatica(); //Drey
     });
 }
 
