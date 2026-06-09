@@ -70,6 +70,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     btnVoltar.addEventListener('click', () => {
-        window.location.href = './index.html';
+        window.location.href = '../index.html';
     });
 });
