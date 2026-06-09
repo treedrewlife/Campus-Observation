@@ -1,5 +1,5 @@
-import { acionarJumpscare } from './jumpscare.js'; //Drey
-import { dispararEstatica } from './estatica.js'; //Drey
+import { acionarJumpscare } from './jumpscare.js'; 
+import { dispararEstatica } from './estatica.js'; 
 
 const SAVE_KEY = "game_state";
 
@@ -33,7 +33,7 @@ window.CAM_ID = window.CAM_ID || "camera1";
 const img = document.getElementById("feed-camera");
 
 
-// -------- SALVAMENTO --------
+// ----------------
 
 function salvar() {
     try {
@@ -45,7 +45,7 @@ function salvar() {
 }
 
 
-// -------- TIMER --------
+// ----------------
 
 function atualizarTimer() {
     const timerEl = document.getElementById("timer");
@@ -71,7 +71,7 @@ function atualizarTimer() {
 }
 
 
-// -------- STATUS DE SINAL --------
+// ----------------
 
 function getIndiceSinal() {
     return Math.min(state.erros, sinais.length - 1);
@@ -105,7 +105,7 @@ function registrarErro() {
 }
 
 
-// -------- SPAWN E DIFICULDADE --------
+// ----------------
 
 const ANOMALIAS = {
     1: "objeto",
@@ -169,7 +169,7 @@ function updateWorld() {
 }
 
 
-// -------- TEMPO OFFLINE --------
+// ----------------
 
 function processarTempoOffline() {
     const agora = Date.now();
@@ -187,7 +187,7 @@ function processarTempoOffline() {
 }
 
 
-// -------- ANOMALIAS ATIVAS --------
+// ----------------
 
 let tempoAcumulado = 0;
 
@@ -207,8 +207,7 @@ function verificarAnomaliasAtivas() {
         }
 
     if (total >= 4) {
-        acionarJumpscare(); //Drey
-    }
+        acionarJumpscare(); 
 
     } else {
         tempoAcumulado = 0;
@@ -217,14 +216,14 @@ function verificarAnomaliasAtivas() {
 }
 
 
-// -------- RENDER CAMERA --------
+// ----------------
 
 function getCameraSrc(camId, data) {
-    const base = "../assets/imagem";
+    const base = "../assets/images";
 
     return data
-        ? `${base}/anomalia/${camId}-anomalia${data.id}.webp`
-        : `${base}/camera/${camId}.webp`;
+        ? `${base}/anomalias/${camId}-anomalia${data.id}.webp`
+        : `${base}/cameras/${camId}.webp`;
 }
 
 function renderCamera() {
@@ -241,7 +240,7 @@ function renderCamera() {
 }
 
 
-// -------- INTERAÇÃO --------
+// ----------------
 
 export function tentarCorrigirAnomalia(tipoSelecionado) {
     const camId = window.CAM_ID;
@@ -270,7 +269,7 @@ export function getProgressoJogo() {
     );
 }
 
-// -------- GAME OVER --------
+// ----------------
 let gameFinished = false;
 
 function gameOver() {
@@ -286,7 +285,7 @@ function victory() {
     window.location.href = "../Pages/Vitoria.html";
 }
 
-// -------- CONTROLE DE CÂMERAS --------
+// ----------------
 
 const nomesCameras = {
     camera1: "CAM 01 - LAB 3.05",
@@ -309,24 +308,23 @@ function initCameraControls() {
         const idCamera = evento.target.getAttribute('data-cam');
         window.CAM_ID = idCamera;
 
-        // Atualiza botões
+      
         const botoes = controles.querySelectorAll('.btn-nav');
         botoes.forEach(botao => botao.classList.remove('active'));
 
         evento.target.classList.add('active');
 
-        // Atualiza título
         if (tituloCam && nomesCameras[idCamera]) {
             tituloCam.textContent = nomesCameras[idCamera];
         }
 
         renderCamera();
 
-        dispararEstatica(); //Drey
+        dispararEstatica();
     });
 }
 
-// -------- INIT --------
+// ----------------
 
 function init() {
     atualizarTimer();
@@ -340,7 +338,6 @@ function init() {
     setInterval(() => {
         updateWorld();
         verificarAnomaliasAtivas();
-        //renderCamera();
         state.ultimoUpdate = Date.now();
         salvar();
     }, 3000);
