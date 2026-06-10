@@ -290,7 +290,7 @@ function gameOver() {
     if (criaturaLiberada()) {
         acionarJumpscare();
     } else {
-        window.location.href = "Campus-Observation/Pages/GameOver.html";
+        window.location.href = "../Pages/Gameover.html";
     }
 }
 
