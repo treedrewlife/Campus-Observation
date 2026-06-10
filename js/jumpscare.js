@@ -1,13 +1,18 @@
 export function acionarJumpscare() {
 
     window.permitirSaida = true;
+
+    window.onbeforeunload = null; 
+    if (typeof bloquearSaida !== 'undefined') {
+        window.removeEventListener('beforeunload', bloquearSaida);
+    }
     
     const container = document.getElementById("jumpscare-container");
     const staticImg = document.getElementById("jumpscare-static");
     const audio = document.getElementById("jumpscare-audio");
 
     if (!container) {
-        window.location.href = "../Pages/Gameover.html";
+        window.location.href = "Gameover.html";
         return;
     }
 
@@ -27,7 +32,7 @@ export function acionarJumpscare() {
     }, 1000);
 
     setTimeout(() => {
-        window.location.href = "../Pages/Gameover.html";
+        window.location.href = "Gameover.html";
     }, 4500);
 }
 
