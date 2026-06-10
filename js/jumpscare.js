@@ -1,4 +1,3 @@
-// Feito por Drey
 export function acionarJumpscare() {
 
     window.permitirSaida = true;
@@ -31,4 +30,4 @@ export function acionarJumpscare() {
         window.location.href = "../Pages/Gameover.html";
     }, 4500);
 }
-// Fim - Feito por Drey
+

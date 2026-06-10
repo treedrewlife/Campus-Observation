@@ -163,8 +163,6 @@ function buildLog(data) {
 
 let logData = [];
 let index = 0;
-
-/* CLOCK */
 setInterval(() => {
     const now = new Date();
     document.getElementById("clock").textContent =
@@ -173,8 +171,6 @@ setInterval(() => {
             minute: '2-digit'
         });
 }, 1000);
-
-/* TYPE SUBTITLE */
 const subtitle = "> Finalizando relatório do turno operacional...";
 let i = 0;
 
@@ -186,8 +182,6 @@ function typeSubtitle() {
         startLog();
     }
 }
-
-/* LOG ANIMADO */
 function show() {
 
     const box = document.getElementById("log");
@@ -225,8 +219,6 @@ function startLog() {
 
     show();
 }
-
-/* BOTÃO FINAL */
 document.getElementById("btn").addEventListener("click", () => {
 
     localStorage.removeItem("game_state");
@@ -237,8 +229,6 @@ document.getElementById("btn").addEventListener("click", () => {
         window.location.href = "../Pages/creditos.html";
     }, 800);
 });
-
-/* INIT */
 window.onload = () => {
     setTimeout(typeSubtitle, 500);
 };

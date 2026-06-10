@@ -105,7 +105,7 @@ const handleAnomaly = () => {
 
   setTimeout(trigger, 20000);
 };
-// ----------------------------------------------------------------------------------------------
+
 const handleButtons = () => {
   const btnIniciar = document.getElementById("iniciar");
   const btnConfig = document.getElementById("configuracoes");
@@ -136,7 +136,7 @@ const handleButtons = () => {
     });
   }
 };
-//-------------------------------------------------------------------------------------
+
 const の部分 = () => {
   document.addEventListener("keydown", (e) => {
     if (e.key === "h") {

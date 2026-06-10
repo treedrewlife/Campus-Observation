@@ -1,4 +1,3 @@
-// Feito por Drey
 const savedVolume = localStorage.getItem('game_volume');
 const volumeFactor = savedVolume !== null ? parseFloat(savedVolume) : 1.0;
 
@@ -45,4 +44,4 @@ export function dispararEstatica() {
         }, stepTime);
     }
 }
-// Fim - Feito por Drey
+
