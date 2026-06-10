@@ -1,3 +1,9 @@
+function bloquearSaida(evento) {
+    if (window.permitirSaida) return;
+    evento.preventDefault();
+    evento.returnValue = ''; 
+}
+
 document.addEventListener('DOMContentLoaded', () => {
 
     window.permitirSaida = false;
@@ -32,11 +38,5 @@ document.addEventListener('DOMContentLoaded', () => {
         if (window.permitirSaida) return;
         history.pushState(null, null, window.location.href);
     });
-
-    window.addEventListener('beforeunload', (evento) => {
-        if (window.permitirSaida) return;
-        evento.preventDefault();
-        evento.returnValue = ''; 
-    });
-
+    window.addEventListener('beforeunload', bloquearSaida);
 });
