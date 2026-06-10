@@ -201,7 +201,7 @@ function verificarAnomaliasAtivas() {
     if (total >= 3) {
         tempoAcumulado += 3000;
 
-        if (tempoAcumulado >= 55000) {
+        if (tempoAcumulado >= 15000) {
             registrarErro();
             tempoAcumulado = 0;
         }
