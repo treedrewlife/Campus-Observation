@@ -32,6 +32,9 @@ window.CAM_ID = window.CAM_ID || "camera1";
 
 const img = document.getElementById("feed-camera");
 
+
+// ----------------
+
 function salvar() {
     try {
         localStorage.setItem(SAVE_KEY, JSON.stringify(state));
@@ -40,6 +43,9 @@ function salvar() {
         return false;
     }
 }
+
+
+// ----------------
 
 function atualizarTimer() {
     const timerEl = document.getElementById("timer");
@@ -63,6 +69,9 @@ function atualizarTimer() {
 
     timerEl.textContent = horas[Math.min(horas.length - 1, horaVirtual)];
 }
+
+
+// ----------------
 
 function getIndiceSinal() {
     return Math.min(state.erros, sinais.length - 1);
@@ -95,6 +104,9 @@ function registrarErro() {
     return state.erros;
 }
 
+
+// ----------------
+
 const ANOMALIAS = {
     1: "objeto",
     2: "objeto",
@@ -103,6 +115,7 @@ const ANOMALIAS = {
     5: "criatura",
     6: "criatura"
 };
+
 
 function dificuldadeTempo() {
     const progresso =
@@ -155,6 +168,9 @@ function updateWorld() {
     }
 }
 
+
+// ----------------
+
 function processarTempoOffline() {
     const agora = Date.now();
     const tempoPassado = agora - state.ultimoUpdate;
@@ -169,6 +185,9 @@ function processarTempoOffline() {
     state.ultimoUpdate = agora;
     salvar();
 }
+
+
+// ----------------
 
 let tempoAcumulado = 0;
 
@@ -187,13 +206,17 @@ function verificarAnomaliasAtivas() {
             tempoAcumulado = 0;
         }
 
-        if (total >= 4) {
-            acionarJumpscare(); 
+    if (total >= 5 && criaturaLiberada()) {
+        acionarJumpscare(); 
         }
     } else {
         tempoAcumulado = 0;
     }
+
 }
+
+
+// ----------------
 
 function getCameraSrc(camId, data) {
     const base = "../assets/images";
@@ -215,6 +238,9 @@ function renderCamera() {
 
     img.src = src;
 }
+
+
+// ----------------
 
 export function tentarCorrigirAnomalia(tipoSelecionado) {
     const camId = window.CAM_ID;
@@ -239,11 +265,20 @@ export function tentarCorrigirAnomalia(tipoSelecionado) {
     }
 }
 
-export function getProgressoJogo() {
+ export function getProgressoJogo() {
     return (
         (Date.now() - state.timer.inicioReal) /
         state.timer.duracaoReal
     );
+}
+
+// ----------------
+
+function criaturaLiberada() {
+    const progresso =
+        (Date.now() - state.timer.inicioReal) /
+        state.timer.duracaoReal;
+    return progresso >= 0.5;
 }
 
 let gameFinished = false;
@@ -252,7 +287,11 @@ function gameOver() {
     if (gameFinished) return;
     gameFinished = true;
     localStorage.removeItem("game_state");
-    acionarJumpscare();
+    if (criaturaLiberada()) {
+        acionarJumpscare();
+    } else {
+        window.location.href = "../Pages/GameOver.html";
+    }
 }
 
 function victory() {
@@ -260,6 +299,8 @@ function victory() {
     gameFinished = true;
     window.location.href = "../Pages/Vitoria.html";
 }
+
+// ----------------
 
 const nomesCameras = {
     camera1: "CAM 01 - LAB 3.05",
@@ -282,6 +323,7 @@ function initCameraControls() {
         const idCamera = evento.target.getAttribute('data-cam');
         window.CAM_ID = idCamera;
 
+      
         const botoes = controles.querySelectorAll('.btn-nav');
         botoes.forEach(botao => botao.classList.remove('active'));
 
@@ -292,8 +334,12 @@ function initCameraControls() {
         }
 
         renderCamera();
+
+        
     });
 }
+
+// ----------------
 
 function init() {
     const savedNoise = localStorage.getItem("game_noise_opacity");
