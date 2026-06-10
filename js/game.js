@@ -290,6 +290,7 @@ function gameOver() {
     if (criaturaLiberada()) {
         acionarJumpscare();
     } else {
+        window.permitirSaida = true;
         window.location.href = "../Pages/Gameover.html";
     }
 }
@@ -297,6 +298,7 @@ function gameOver() {
 function victory() {
     if (gameFinished) return;
     gameFinished = true;
+    window.permitirSaida = true;
     window.location.href = "../Pages/Vitoria.html";
 }
 
