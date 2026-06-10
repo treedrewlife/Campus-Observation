@@ -1,33 +1,53 @@
-# Campus Observation
+# 👁️ Campus Observation
 
-Um jogo de horror psicológico focado em vigilância, observação e tensão atmosférica dentro de um campus universitário misterioso.
+```css
+[ ACESSO AO SISTEMA DE VIGILÂNCIA: ONLINE ]
+[ STATUS DO CAMPUS: ANÔMALO ]
+```
 
+Um jogo de horror psicológico focado em vigilância, observação e tensão atmosférica dentro de um campus universitário misterioso. <br>
 O jogador deve monitorar câmeras, investigar anomalias e sobreviver aos eventos perturbadores que acontecem durante a madrugada.
 
 ---
 
 ## Visão Geral
 
-> “Alguma coisa está observando você de volta.”
+> [!WARNING]  
+> **Alguma coisa está observando você de volta.**
 
-Em *Campus Observation*, você assume o papel de um observador noturno responsável por monitorar diferentes setores do campus através de um sistema de vigilância.
+Em **Campus Observation**, você assume o papel de um vigilante noturno monitorando câmeras de segurança antigas espalhadas pelo campus. A princípio, é uma noite comum. Então, você nota algo errado.
 
-Conforme a noite avança, eventos estranhos começam a surgir:
+Objetos mudam de lugar. Figuras aparecem onde não deveriam estar. As câmeras começam a falhar. E quanto mais você olha, mais parece que aquilo também está te olhando.
 
-* Objetos desaparecem
+O jogo é uma experiência de tensão lenta, construída sobre observação cuidadosa, dread acumulado e a estética deteriorada do horror analógico.
+
+## Gameplay
+
+O jogo é baseado em mecânicas de observação e identificação de anomalias.
+
+| Ação | Descrição |
+| ---  | ----    |
+|📷 **Monitore as câmeras** | Alterne entre os diferentes setores do campus usando o painel. |
+|🔍 **Identifique alterações** | Fique atento ao cenário original. Qualquer mudança é um sinal. |
+|📋 **Reporte a anomalia** | Use o sistema do terminal para registrar o tipo de evento antes que a anomalia se aproxime demais. |
+|⏱️ **Gerencie a tensão** | Quanto mais o relógio avança, mais perigosos e frequentes os eventos se tornam. |
+
+---
+
+###  Anomalias Detectadas ⚠️
+Os incidentes registrados até agora incluem:
+* Objetos desaparecendo ou se movendo entre câmeras 
 * Entidades surgem nos corredores
 * Ambientes mudam sem explicação
 * Interferências aparecem nas câmeras
 * Sons estranhos ecoam pelo campus
 
-Sua missão é simples:
-
-**Observe. Reporte. Sobreviva.**
+> [!NOTE]  
+> **Relatórios anteriores foram expurgados. Esta é a primeira noite documentada.**
 
 ---
 
 ## Funcionalidades
-
 * Horror psicológico atmosférico
 * Sistema de câmeras de vigilância
 * Eventos e anomalias paranormais
@@ -41,19 +61,9 @@ Sua missão é simples:
 
 ## Tecnologias Utilizadas
 
-* HTML5
-* CSS3
-* JavaScript
-
----
-
-## Gameplay
-
-O jogo é baseado em mecânicas de observação e identificação de anomalias.
-
-O jogador deve alternar entre diferentes câmeras espalhadas pelo campus e detectar alterações suspeitas antes que seja tarde demais.
-
-Quanto mais tempo a noite avança, mais perigosos e frequentes os eventos se tornam.
+* **HTML5** (Estrutura)
+* **CSS3** (Visuais & Efeitos)
+* **JavaScript** (Lógica & Câmeras)
 
 ---
 
@@ -63,14 +73,14 @@ Quanto mais tempo a noite avança, mais perigosos e frequentes os eventos se tor
 Campus-Observation/
 │
 ├── assets/
-│   ├── audio/
-│   ├── images/
-│   └── videos/
+│   ├── audio/       # Efeitos sonoros, estática e trilha ambiente
+│   ├── images/      # Texturas de ruído, cenários das câmeras e sprites
+│   └── videos/      # Clipes de interferência e transições VHS
 │
-├── css/
-├── js/
-├── index.html
-└── README.md
+├── css/             # Estilização e efeitos visuais (CRT/Scanlines)
+├── js/              # Lógica do jogo, sistema de câmeras e anomalias
+├── index.html       # Tela principal do jogo
+└── README.md        # Documentação do projeto
 ```
 
 ---
@@ -79,23 +89,23 @@ Campus-Observation/
 
 O projeto foi inspirado por:
 
-* jogos de observação paranormal
-* horror analógico
-* liminal spaces
-* jogos de vigilância psicológica
-* estética VHS
+* Jogos de observação paranormal
+* Horror analógico
+* Liminal spaces
+* Jogos de vigilância psicológica
+* Estética VHS
 
 ---
 
 ## Atualizações Futuras
 
-* Novos setores do campus
-* Mais anomalias aleatórias
-* Sistema de salvamento
-* Múltiplos finais
-* Expansão da história
-* Efeitos CRT completos
-* Sons dinâmicos mais avançados
+* [ ] Novos setores do campus
+* [ ] Mais anomalias aleatórias
+* [ ] Sistema de salvamento
+* [ ] Múltiplos finais
+* [ ] Expansão da história
+* [ ] Efeitos CRT completos
+* [ ] Sons dinâmicos mais avançados
 
 ---
 
@@ -111,23 +121,15 @@ Este projeto está sob a licença MIT.
 
 ---
 
-## Desenvolvedor
+## Desenvolvedores
 
-Desenvolvido por 
-Gabriel Cavalcante
-https://github.com/treedrewlife
-Andrey Celestino
-https://github.com/DreyCelestino
-Nathan Carvalho
-https://github.com/CarvalhoNathan
-Kawan Weber
-https://github.com/Kawank3
+### Desenvolvido por: 
+- [Gabriel Cavalcante](https://github.com/treedrewlife)
+- [Andrey Celestino](https://github.com/DreyCelestino)
+- [Nathan Carvalho](https://github.com/CarvalhoNathan)
+- [Kawan Weber](https://github.com/Kawank3)
 
-Repositório oficial:
-[Campus Observation no GitHub]
-https://github.com/treedrewlife/Campus-Observation
-
-([github.com][1])
-
-[1]: (https://github.com/topics/campus-project)
-
+```css
+[ FIM DO REGISTRO — TURNO 03:47 AM ]
+[ PRÓXIMO VIGILANTE: NÃO ENCONTRADO ]
+```
