@@ -33,6 +33,7 @@ function updateClock() {
 
         "> SPECIAL_THANKS:",
         "FATEC / Testadores / Inspiração",
+        "tester - Leozin Games",
 
         "> SYSTEM_STATUS:",
         "FINALIZED ✔"
